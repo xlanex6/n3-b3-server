@@ -1,11 +1,7 @@
 <template>
   <div class="bg-gradient-to-tr from-slate-100 to-slate-300 min-h-screen">
 
-    <!-- menu -->
-
     <div class="m-auto max-w-screen-sm py-12">
-
-      <!-- header -->
 
       <div class="bg-gray-200 border-2 rounded-md space-y-4 m-auto py-4 my-4">
         <h3 class="text-center ">Generate {{ route.params.model }}</h3>
@@ -17,7 +13,18 @@
 
       </div>
 
-      <pre class="text-xs rounded-md p-5 bg-white">{{ data[route.params.model] }}</pre>
+      <div v-if="pending" class="w-full grid place-content-center h-52">
+        <Icon name="line-md:loading-twotone-loop" class="text-black" size="80" />
+      </div>
+
+      <div v-else class="relative">
+        <button class="absolute top-1 right-2 " @click="copy(JSON.stringify(data[route.params.model]))">
+          <Icon name="ph:copy-light" class="text-black hover:text-gray-600" size="24" />
+        </button>
+        <pre class="text-xs rounded-md p-5 bg-white">{{ data[route.params.model] }}</pre>
+      </div>
+
+
     </div>
   </div>
 </template>
@@ -27,7 +34,9 @@
 const route = useRoute()
 const count = ref(2)
 
-const { data, refresh } = useFetch(`/api/${route.params.model}`, {
+const { text, copy, copied, isSupported } = useClipboard()
+
+const { data, refresh, pending } = useFetch(`/api/${route.params.model}`, {
   query: {
     count
   },

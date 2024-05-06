@@ -16,6 +16,8 @@
     "vue-router": "^4.3.0"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.4.1"
+    "@faker-js/faker": "^8.4.1",
+    "@vueuse/nuxt": "^10.9.0",
+    "nuxt-icon": "^0.6.10"
   }
 }
