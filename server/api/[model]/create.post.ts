@@ -1,6 +1,7 @@
 export default defineEventHandler(async (event) => {
 
-  const { title, id } = await readBody(event)
+  const model = getRouterParam(event, 'model')
+  const body  = await readBody(event)
 
-  return { created:true, title, id }
+  return { created:true, body }
  });
