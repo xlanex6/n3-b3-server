@@ -1,0 +1,27 @@
+<template>
+  <div class="bg-gradient-to-tr from-slate-100 to-slate-300 min-h-screen">
+    <div class="m-auto max-w-screen-md py-12">
+      <h3>Generate USERS</h3>
+      <div class="my-4 ">
+        <input type="number" class="rounded-md py-1 text-center" v-model="count">
+      </div>
+      <button @click="getPersons"
+        class=" bg-gradient-to-tl from-red-500 to-red-600 hover:to-red-700 px-8 rounded-lg shadow-lg text-white py-2">GENERATE</button>
+    </div>
+    <pre>{{ personList }}</pre>
+  </div>
+</template>
+
+<script setup>
+
+const personList = ref([])
+const count = ref(1)
+
+async function getPersons() {
+  personList.value = await $fetch('/api/person', {
+    query: {
+      count: count.value
+    }
+  })
+}
+</script>
