@@ -3,10 +3,10 @@ export default defineEventHandler((event) => {
   const { count } = getQuery(event)
 
   const countAsNumber = parseInt(count) || 1
-  const persons = []
+  const users = []
 
   for (let i = 0; i < countAsNumber; i++) {
-    persons.push(
+    users.push(
       {
         name: $faker.person.fullName(),
         gender: $faker.person.gender(),
@@ -18,6 +18,6 @@ export default defineEventHandler((event) => {
     )
   }
 
-  return { countAsNumber, persons }
+  return { limit: countAsNumber, users }
 
 });
