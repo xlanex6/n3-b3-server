@@ -1,9 +1,7 @@
-
 export default defineEventHandler((event) => {
 
 
   // const id = event.context.params.id
-
   // const id = getRouterParam(event, 'id')
   // const model = getRouterParam(event, 'model')
 
@@ -11,5 +9,5 @@ export default defineEventHandler((event) => {
 
   const { limit } = getQuery(event)
 
-  return { id , model, limit}
+  return { model, id, limit }
 })

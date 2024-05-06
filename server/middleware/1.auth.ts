@@ -4,9 +4,9 @@ export default defineEventHandler((event) => {
 
   const token = getHeader(event, 'Authorization')
 
-  if (token !== 'secret') {
-    setResponseStatus(event, 401)
-    return { error: 'No auth' }
-  }
+  // if (token !== 'secret') {
+  //   setResponseStatus(event, 401)
+  //   return { error: 'No auth' }
+  // }
 
 });
